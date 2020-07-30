@@ -6,14 +6,9 @@ import org.fasttrackit.transfer.CreateTaskRequest;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ) throws SQLException {
-        System.out.println( "Hello World!" );
 
 
           TaskRepository taskRepository = new TaskRepository();
@@ -24,7 +19,9 @@ public class App
 //
 //        taskRepository.createTask(createTaskRequest);
 
-        taskRepository.deleteTask(1);
+        //taskRepository.deleteTask(1);
+
+        taskRepository.getTasks();
 
 
     }
