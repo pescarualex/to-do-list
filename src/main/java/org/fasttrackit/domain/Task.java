@@ -10,15 +10,6 @@ public class Task {
     private boolean done;
 
 
-
-
-
-
-
-
-
-
-
     public long getId() {
         return id;
     }

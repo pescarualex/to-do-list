@@ -12,16 +12,16 @@ public class App
 
 
           TaskRepository taskRepository = new TaskRepository();
-//        CreateTaskRequest createTaskRequest = new CreateTaskRequest();
-//
-//        createTaskRequest.setDescription("Learn JDBC");
-//        createTaskRequest.setDeadline(LocalDate.now().plusWeeks(1));
-//
-//        taskRepository.createTask(createTaskRequest);
+        CreateTaskRequest createTaskRequest = new CreateTaskRequest();
 
-        //taskRepository.deleteTask(1);
+        createTaskRequest.setDescription("Learn JDBC");
+        createTaskRequest.setDeadline(LocalDate.now().plusWeeks(1));
 
-        taskRepository.getTasks();
+        taskRepository.createTask(createTaskRequest);
+
+       // taskRepository.deleteTask(1);
+
+       // taskRepository.getTasks();
 
 
     }
