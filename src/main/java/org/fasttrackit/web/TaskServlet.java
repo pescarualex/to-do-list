@@ -23,6 +23,7 @@ public class TaskServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        addCorseHeader(resp);
 
         CreateTaskRequest request = ObjectMapperConfiguration.getObjectMapper().readValue(req.getReader(), CreateTaskRequest.class);
 
@@ -35,6 +36,8 @@ public class TaskServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        addCorseHeader(resp);
+
         try {
 
             List<Task> tasks = taskService.getTasks();
@@ -48,6 +51,8 @@ public class TaskServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        addCorseHeader(resp);
+
         String idAsString = req.getParameter("id");
 
         UpdateTaskRequest request = ObjectMapperConfiguration.getObjectMapper().readValue(req.getReader(), UpdateTaskRequest.class);
@@ -62,6 +67,8 @@ public class TaskServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        addCorseHeader(resp);
+
         String idAsString = req.getParameter("id");
 
         try {
@@ -69,5 +76,16 @@ public class TaskServlet extends HttpServlet {
         } catch (SQLException e) {
             resp.sendError(500, e.getMessage());
         }
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        addCorseHeader(resp);
+    }
+
+    private void addCorseHeader(HttpServletResponse  response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "content-type");
     }
 }
